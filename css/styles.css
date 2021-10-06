@@ -1,0 +1,24 @@
+/* HEADER */
+header{
+    text-align: center;
+}
+
+header h3{
+    margin-top: -20px;
+}
+
+/* BODY */
+body{
+    background-image: url(../img/fondo.jpg);
+}
+
+/* IMG FRUTAS */
+.fruta{
+    border-radius: 5%;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+}
+
+.fruta:hover{
+    transform: scale(1.1, 1.1);
+}
