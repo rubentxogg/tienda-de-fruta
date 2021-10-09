@@ -15,19 +15,18 @@
 /* HEADER */
 header{
     text-align: center;
-    background-color: white;
     border-radius: 15px;
     text-shadow: 4px 3px 0px #7A7A7A;
     color: #FFFFFF;
     margin: auto;
     font-family: AmaticSC-Bold, Arial, Helvetica, sans-serif;
     font-size: 40px;
-    background: rgb(174,221,238);
     background: linear-gradient(90deg, rgba(174,221,238,1) 4%, rgba(180,212,217,1) 51%, rgba(194,221,252,1) 100%);
+    cursor: default;
 }
 
 header h3{
-    margin-top: -25px;
+    margin-top: -65px;
     font-size: 35px;
 }
 
@@ -49,6 +48,7 @@ section{
     transition: all .2s ease-in-out;
     cursor: pointer;
     width: 200px;
+    height: 200px;
     border: 3px solid;
     border-color: #000000a4;
 }
@@ -63,6 +63,7 @@ section{
     justify-content: center;
     row-gap: 30px;
     column-gap: 30px;
+    width: 100%;
 }
 
 .contenedor-frutas > div{
@@ -73,11 +74,36 @@ section{
     margin: 5px;
 }
 
-textarea{
+button{
+    border-radius: 15px;
+    display: block;
+    width: 35%;
+    margin: auto;
+    margin-top: 5%;
+    cursor: pointer;
+    font-family: AmaticSC-Bold, Arial, Helvetica, sans-serif;
+    font-size: 45px;
+    text-shadow: 4px 3px 0px #7A7A7A;
+    color: #FFFFFF;
+    background: linear-gradient(90deg, rgba(174,221,238,1) 4%, rgba(180,212,217,1) 51%, rgba(194,221,252,1) 100%);
+}
+
+fieldset{
     width: 50%;
     margin: 4% auto auto;
     display: flex;
     height: auto;
+    border-radius: 5px;
+}
+
+textarea{
+    border-radius: 15px;
+    width: 100%;
+}
+
+legend{
+    font-size: 48px;
+    text-shadow: 3px 3px 0px #7A7A7A;
 }
 
 /* FOOTER */
