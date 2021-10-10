@@ -1,58 +1,58 @@
-var frutaYKilos = [];
+var frutaYPrecio = [];
 
-function anadirKg() {
+function anadirFrutaYPrecio() {
   "use strict";
 
   let fruta = document.getElementsByClassName("frutaImg");
 
   for (let i = 0; i < fruta.length; i++) {
-    anadirFrutaYKilos(i);
+    anadir(i);
   }
 
-  function anadirFrutaYKilos(i) {
+  function anadir(i) {
     fruta[i].onclick = function () {
       switch (fruta[i].alt) {
         case "limon":
-          frutaYKilos.push("Limón-2.29");
+          frutaYPrecio.push("Limón-2.29");
           break;
         case "manzanaVerde":
-          frutaYKilos.push("Manzana verde-1.39");
+          frutaYPrecio.push("Manzana verde-1.39");
           break;
         case "manzanaRoja":
-          frutaYKilos.push("Manzana roja-1.69");
+          frutaYPrecio.push("Manzana roja-1.69");
           break;
         case "piña":
-          frutaYKilos.push("Piña-1.98");
+          frutaYPrecio.push("Piña-1.98");
           break;
         case "sandia":
-          frutaYKilos.push("Sandía-1.35");
+          frutaYPrecio.push("Sandía-1.35");
           break;
         case "cereza":
-          frutaYKilos.push("Cereza-4.75");
+          frutaYPrecio.push("Cereza-4.75");
           break;
         case "banana":
-          frutaYKilos.push("Banana-1.05");
+          frutaYPrecio.push("Banana-1.05");
           break;
         case "uvas":
-          frutaYKilos.push("Uvas-0.84");
+          frutaYPrecio.push("Uvas-0.84");
           break;
         case "coco":
-          frutaYKilos.push("Coco-3.77");
+          frutaYPrecio.push("Coco-3.77");
           break;
         case "fresa":
-          frutaYKilos.push("Fresa-1.99");
+          frutaYPrecio.push("Fresa-1.99");
           break;
         case "aguacate":
-          frutaYKilos.push("Aguacate-3.99");
+          frutaYPrecio.push("Aguacate-3.99");
           break;
         case "naranja":
-          frutaYKilos.push("Naranja-1,99");
+          frutaYPrecio.push("Naranja-1,99");
           break;
         case "kiwi":
-          frutaYKilos.push("Kiwi-3.35");
+          frutaYPrecio.push("Kiwi-3.35");
           break;
         case "papaya":
-          frutaYKilos.push("Papaya-4.89");
+          frutaYPrecio.push("Papaya-4.89");
           break;
         default:
           console.error("No se ha podido añadir a la cesta.");
@@ -62,4 +62,40 @@ function anadirKg() {
   }
 }
 
-anadirKg();
+function obtenerPrecios() {
+  "use strict";
+
+  let precios = [];
+
+  frutaYPrecio.forEach((element) => {
+    precios.push(element.split("-")[1]);
+  });
+
+  return precios;
+}
+
+function sumaTotalPrecios(arrayPrecios) {
+  "use strict";
+
+  let suma = arrayPrecios.reduce((precio1, precio2) => {
+    return Number.parseFloat(precio1) + Number.parseFloat(precio2);
+  });
+
+  return suma.toFixed(2);
+}
+
+function finalizarCompra() {
+  "use strict";
+
+  let botonFinCompra = document.getElementById("finCompra");
+  let precioTotal = 0;
+
+  botonFinCompra.onclick = function () {
+    // TODO
+    precioTotal = sumaTotalPrecios(obtenerPrecios());
+    console.log(precioTotal);
+  };
+}
+
+anadirFrutaYPrecio();
+finalizarCompra();
