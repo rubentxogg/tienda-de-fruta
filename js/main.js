@@ -5,6 +5,7 @@ function anadirFrutaYPrecio() {
 
   let fruta = document.getElementsByClassName("frutaImg");
 
+  // Ejecuta el evento "onclick" en todas las imágenes de frutas
   for (let i = 0; i < fruta.length; i++) {
     anadir(i);
   }
@@ -84,6 +85,20 @@ function sumaTotalPrecios(arrayPrecios) {
   return suma.toFixed(2);
 }
 
+function obtenerNumeroKilosFruta() {
+  "use strict";
+
+  let frutas = [];
+  const contadorKilos = (array) =>
+    array.reduce((prev, curr) => ((prev[curr] = ++prev[curr] || 1), prev), {});
+
+  frutaYPrecio.forEach((element) => {
+    frutas.push(element.split("-")[0]);
+  });
+
+  return contadorKilos(frutas);
+}
+
 function finalizarCompra() {
   "use strict";
 
@@ -93,7 +108,7 @@ function finalizarCompra() {
   botonFinCompra.onclick = function () {
     // TODO
     precioTotal = sumaTotalPrecios(obtenerPrecios());
-    console.log(precioTotal);
+    console.log(obtenerNumeroKilosFruta());
   };
 }
 
