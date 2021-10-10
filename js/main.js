@@ -99,16 +99,27 @@ function obtenerNumeroKilosFruta() {
   return contadorKilos(frutas);
 }
 
+function obtenerPrecioMedioKilo(){
+    'use strict';
+
+    return (sumaTotalPrecios(obtenerPrecios()) / obtenerPrecios().length).toFixed(2);
+}
+
 function finalizarCompra() {
   "use strict";
 
   let botonFinCompra = document.getElementById("finCompra");
   let precioTotal = 0;
+  let resumen = document.getElementById("cajaResumen");
+  let precioMedio = 0;
 
   botonFinCompra.onclick = function () {
     // TODO
     precioTotal = sumaTotalPrecios(obtenerPrecios());
-    console.log(obtenerNumeroKilosFruta());
+    precioMedio = obtenerPrecioMedioKilo();
+
+    resumen.append("\nPrecio total: "+precioTotal+"€");
+    resumen.append("\nPrecio medio: "+precioMedio+"€");
   };
 }
 
