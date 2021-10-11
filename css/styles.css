@@ -8,6 +8,12 @@
     src: url(../fonts/AmaticSC-Regular.ttf);
 }
 
+@keyframes frutaClick {
+    100%{
+        
+    }
+}
+
 *{
     box-sizing: border-box;
 }
@@ -57,6 +63,11 @@ section{
     transform: scale(1.1, 1.1);
 }
 
+.frutaClick{
+    box-shadow: 3px 3px 15px #80bbe0, 3px 3px 30px #80bbe0;
+    border-color: #80bbe0;
+}
+
 .contenedor-frutas{
     display: flex;
     flex-wrap: wrap;
@@ -87,6 +98,19 @@ button{
     text-shadow: 4px 3px 0px #7A7A7A;
     color: #FFFFFF;
     background: linear-gradient(90deg, rgba(174,221,238,1) 4%, rgba(180,212,217,1) 51%, rgba(194,221,252,1) 100%);
+    transition: all .2s ease-in-out;
+}
+
+button:hover{
+    box-shadow: 3px 3px 30px #246191;
+}
+
+.botonDesactivado{
+    cursor: default;
+}
+
+.botonDesactivado:hover{
+    box-shadow: none;
 }
 
 fieldset{
@@ -97,6 +121,7 @@ fieldset{
     height: auto;
     border-radius: 5px;
     margin-bottom: 10%;
+    border-color: #7a7a7a;
 }
 
 textarea{
@@ -105,12 +130,29 @@ textarea{
     text-align: center;
     font-size: 45px;
     font-family: AmaticSC-Regular, Arial, Helvetica, sans-serif;
-    background: rgba(255, 255, 255, 0.438);
+    background-image: url(../img/fondoTextarea.jpg);
+    background-size: cover;
+    background-position: 4%;
+    border-color: #7a7a7a3d;
+}
+
+textarea:disabled{
+    background-color: #FFFFFF;
+    color: black;
+}
+
+textarea::placeholder{
+    color: black;
 }
 
 legend{
     font-size: 48px;
     text-shadow: 3px 3px 0px #7A7A7A;
+    cursor: default;
+}
+
+span{
+    color: white;
 }
 
 /* FOOTER */

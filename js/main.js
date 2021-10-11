@@ -15,6 +15,8 @@ function anadirFrutaYPrecio() {
 
   function anadir(i) {
     fruta[i].onclick = function () {
+      animacionFrutaClick(this);
+
       switch (fruta[i].alt) {
         case "limon":
           frutaYPrecio.push("Limón-2.29");
@@ -50,7 +52,7 @@ function anadirFrutaYPrecio() {
           frutaYPrecio.push("Aguacate-3.99");
           break;
         case "naranja":
-          frutaYPrecio.push("Naranja-1,99");
+          frutaYPrecio.push("Naranja-1.99");
           break;
         case "kiwi":
           frutaYPrecio.push("Kiwi-3.35");
@@ -64,6 +66,14 @@ function anadirFrutaYPrecio() {
       }
     };
   }
+}
+
+function animacionFrutaClick(imagenFruta) {
+  imagenFruta.classList.add("frutaClick");
+
+  setTimeout(() => {
+    imagenFruta.classList.remove("frutaClick");
+  }, 300);
 }
 
 function obtenerPrecios() {
@@ -137,14 +147,18 @@ function finalizarCompra() {
 
   botonFinCompra.onclick = function () {
     if (frutaYPrecio.length === 0) {
-      throw new exceptionCestaCompraVacia(
-        "El array frutaYPrecio está vacío."
-      );
+      throw new exceptionCestaCompraVacia("El array frutaYPrecio está vacío.");
     }
+
+    botonFinCompra.textContent = "¡Gracias por la compra!";
+    botonFinCompra.disabled = "true";
+    botonFinCompra.setAttribute("class", "botonDesactivado");
 
     precioTotal = sumaTotalPrecios(obtenerPrecios());
     precioMedio = obtenerPrecioMedioKilo();
     fruta = obtenerNumeroKilosFruta();
+
+    resumen.append("----------------------");
 
     for (let elem in fruta) {
       if (fruta[elem] <= 1) {
@@ -154,7 +168,8 @@ function finalizarCompra() {
       }
     }
 
-    resumen.append("\n\nPrecio total --- " + precioTotal + "€");
+    resumen.append("\n----------------------");
+    resumen.append("\nPrecio total --- " + precioTotal + "€");
     resumen.append("\nPrecio medio --- " + precioMedio + "€/Kg");
 
     frutaYPrecio = [];
@@ -173,7 +188,6 @@ try {
 } catch (err) {
   // NO FUNCIONA!
   console.log("TEST");
-}
-finally{
+} finally {
   frutaYPrecio = [];
 }
