@@ -1,7 +1,16 @@
-exceptionCestaCompraVacia.prototype = Object.create(Error.prototype);
-exceptionCestaCompraVacia.prototype.name = "exceptionCestaCompraVacia";
-
 var frutaYPrecio = [];
+const BOTON_FIN_COMPRA = document.getElementById("finCompra");
+
+anadirFrutaYPrecio();
+BOTON_FIN_COMPRA.onclick = () => {
+  try {
+    finalizarCompra();
+  } catch (exceptionCestaCompraVacia) {
+    alert("¡No puedes finalizar la compra con la cesta vacía!");
+  } finally {
+    frutaYPrecio = [];
+  }
+};
 
 function anadirFrutaYPrecio() {
   "use strict";
@@ -15,7 +24,7 @@ function anadirFrutaYPrecio() {
 
   function anadir(i) {
     fruta[i].onclick = function () {
-      animacionFrutaClick(this);
+      efectoFrutaClick(this);
 
       switch (fruta[i].alt) {
         case "limon":
@@ -68,7 +77,9 @@ function anadirFrutaYPrecio() {
   }
 }
 
-function animacionFrutaClick(imagenFruta) {
+function efectoFrutaClick(imagenFruta) {
+  "use strict";
+
   imagenFruta.classList.add("frutaClick");
 
   setTimeout(() => {
@@ -142,52 +153,38 @@ function finalizarCompra() {
   let precioTotal = 0;
   let precioMedio = 0;
   let resumen = document.getElementById("cajaResumen");
-  let botonFinCompra = document.getElementById("finCompra");
   let fruta = null;
 
-  botonFinCompra.onclick = function () {
-    if (frutaYPrecio.length === 0) {
-      throw new exceptionCestaCompraVacia("El array frutaYPrecio está vacío.");
+  if (frutaYPrecio.length === 0) {
+    throw new exceptionCestaCompraVacia("El array frutaYPrecio está vacío.");
+  }
+
+  BOTON_FIN_COMPRA.textContent = "¡Gracias por la compra!";
+  BOTON_FIN_COMPRA.disabled = "true";
+  BOTON_FIN_COMPRA.setAttribute("class", "botonDesactivado");
+
+  precioTotal = sumaTotalPrecios(obtenerPrecios());
+  precioMedio = obtenerPrecioMedioKilo();
+  fruta = obtenerNumeroKilosFruta();
+
+  resumen.append("----------------------");
+
+  for (let elem in fruta) {
+    if (fruta[elem] <= 1) {
+      resumen.append("\n" + elem + " --- " + fruta[elem] + " kg");
+    } else {
+      resumen.append("\n" + elem + " --- " + fruta[elem] + " Kgs");
     }
+  }
 
-    botonFinCompra.textContent = "¡Gracias por la compra!";
-    botonFinCompra.disabled = "true";
-    botonFinCompra.setAttribute("class", "botonDesactivado");
-
-    precioTotal = sumaTotalPrecios(obtenerPrecios());
-    precioMedio = obtenerPrecioMedioKilo();
-    fruta = obtenerNumeroKilosFruta();
-
-    resumen.append("----------------------");
-
-    for (let elem in fruta) {
-      if (fruta[elem] <= 1) {
-        resumen.append("\n" + elem + " --- " + fruta[elem] + " kg");
-      } else {
-        resumen.append("\n" + elem + " --- " + fruta[elem] + " Kgs");
-      }
-    }
-
-    resumen.append("\n----------------------");
-    resumen.append("\nPrecio total --- " + precioTotal + "€");
-    resumen.append("\nPrecio medio --- " + precioMedio + "€/Kg");
-
-    frutaYPrecio = [];
-  };
+  resumen.append("\n----------------------");
+  resumen.append("\nPrecio total --- " + precioTotal + "€");
+  resumen.append("\nPrecio medio --- " + precioMedio + "€/Kg");
 }
 
 function exceptionCestaCompraVacia(mensaje) {
   this.mensaje = "Error: " + mensaje;
 }
 
-// Ejecución del programa
-anadirFrutaYPrecio();
-
-try {
-  finalizarCompra();
-} catch (err) {
-  // NO FUNCIONA!
-  console.log("TEST");
-} finally {
-  frutaYPrecio = [];
-}
+exceptionCestaCompraVacia.prototype = Object.create(Error.prototype);
+exceptionCestaCompraVacia.prototype.name = "exceptionCestaCompraVacia";
