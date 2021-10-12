@@ -171,7 +171,7 @@ function finalizarCompra() {
 
   for (let elem in fruta) {
     if (fruta[elem] <= 1) {
-      resumen.append("\n" + elem + " --- " + fruta[elem] + " kg");
+      resumen.append("\n" + elem + " --- " + fruta[elem] + " Kg");
     } else {
       resumen.append("\n" + elem + " --- " + fruta[elem] + " Kgs");
     }

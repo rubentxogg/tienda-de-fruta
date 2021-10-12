@@ -8,12 +8,6 @@
     src: url(../fonts/AmaticSC-Regular.ttf);
 }
 
-@keyframes frutaClick {
-    100%{
-        
-    }
-}
-
 *{
     box-sizing: border-box;
 }
