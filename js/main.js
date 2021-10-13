@@ -1,7 +1,10 @@
 var frutaYPrecio = [];
 const BOTON_FIN_COMPRA = document.getElementById("finCompra");
+const RESUMEN_COMPRA = document.getElementById("cajaResumen");
+RESUMEN_COMPRA.value = "";
 
 anadirFrutaYPrecio();
+
 BOTON_FIN_COMPRA.onclick = () => {
   try {
     finalizarCompra();
@@ -73,7 +76,18 @@ function anadirFrutaYPrecio() {
           console.error("No se ha podido añadir a la cesta.");
           break;
       }
+
+      iniciarBotonCompra();
     };
+  }
+
+  function iniciarBotonCompra() {
+    if (frutaYPrecio.length === 1) {
+      BOTON_FIN_COMPRA.textContent = "¡Finalizar compra!";
+      BOTON_FIN_COMPRA.removeAttribute("disabled");
+      BOTON_FIN_COMPRA.removeAttribute("class", "botonDesactivado");
+      RESUMEN_COMPRA.value = "";
+    }
   }
 }
 
@@ -152,7 +166,6 @@ function finalizarCompra() {
 
   let precioTotal = 0;
   let precioMedio = 0;
-  let resumen = document.getElementById("cajaResumen");
   let fruta = null;
 
   if (frutaYPrecio.length === 0) {
@@ -167,19 +180,19 @@ function finalizarCompra() {
   precioMedio = obtenerPrecioMedioKilo();
   fruta = obtenerNumeroKilosFruta();
 
-  resumen.append("----------------------");
+  RESUMEN_COMPRA.value += "----------------------";
 
   for (let elem in fruta) {
     if (fruta[elem] <= 1) {
-      resumen.append("\n" + elem + " --- " + fruta[elem] + " Kg");
+      RESUMEN_COMPRA.value += "\n" + elem + " --- " + fruta[elem] + " Kg";
     } else {
-      resumen.append("\n" + elem + " --- " + fruta[elem] + " Kgs");
+      RESUMEN_COMPRA.value += "\n" + elem + " --- " + fruta[elem] + " Kgs";
     }
   }
 
-  resumen.append("\n----------------------");
-  resumen.append("\nPrecio total --- " + precioTotal + "€");
-  resumen.append("\nPrecio medio --- " + precioMedio + "€/Kg");
+  RESUMEN_COMPRA.value += "\n----------------------";
+  RESUMEN_COMPRA.value += "\nPrecio total --- " + precioTotal + "€";
+  RESUMEN_COMPRA.value += "\nPrecio medio --- " + precioMedio + "€/Kg";
 }
 
 function exceptionCestaCompraVacia(mensaje) {
