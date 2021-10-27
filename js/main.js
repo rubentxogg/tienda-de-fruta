@@ -1,3 +1,7 @@
+import { Fruta } from "./frutas.js";
+import { FrutaInvierno } from "./frutas.js";
+import { FrutaVerano } from "./frutas.js";
+
 var frutaYPrecio = [];
 const BOTON_FIN_COMPRA = document.getElementById("finCompra");
 const RESUMEN_COMPRA = document.getElementById("cajaResumen");
