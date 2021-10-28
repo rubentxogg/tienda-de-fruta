@@ -1,7 +1,32 @@
 import { Fruta } from "./frutas.js";
-import { FrutaInvierno } from "./frutas.js";
 import { FrutaVerano } from "./frutas.js";
+import { FrutaInvierno } from "./frutas.js";
+////////////////////////////////////////////////////////////////////////
 
+function inicializarFrutas(){
+  "use strict";
+  // Invierno
+  let limon = new FrutaInvierno("Limón", 2.29, 0, true);
+  let manzanaVde = new FrutaInvierno("Manzana vde", 1.39, false);
+  let manzanaRoja = new FrutaInvierno("Manzana roja", 1.69, 0, false);
+  let pina = new FrutaInvierno("Piña", 1.98, 0, false);
+  let aguacate = new FrutaInvierno("Aguacate", 3.99, 0, true);
+  let naranja = new FrutaInvierno("Naranja", 1.99, 0, true);
+  let kiwi = new FrutaInvierno("Kiwi", 3.35, 0, false);
+  let banana = new FrutaInvierno("Banana", 1.05, 0 , false);
+  let papaya = new FrutaInvierno("Papaya", 4.89, 0, false);
+
+  // Verano
+  let sandia = new FrutaVerano("Sandía", 1.35, 0, true, "Andalucía");
+  let cereza = new FrutaVerano("Cereza", 4.75, 0, true, "Cataluña");
+  let uvas = new FrutaVerano("Uva", 0.84, 0, true, "Valencia");
+  let coco = new FrutaVerano("Coco", 3.77, 0, false, "Indonesia");
+
+  // Otras
+  let fresa = new Fruta("Fresa", 1.99, 0);
+}
+
+////////////////////////////////////////////////////////////////////////
 var frutaYPrecio = [];
 const BOTON_FIN_COMPRA = document.getElementById("finCompra");
 const RESUMEN_COMPRA = document.getElementById("cajaResumen");

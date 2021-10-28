@@ -30,7 +30,7 @@ class Fruta {
   }
 }
 
-class FrutaInvierno extends Fruta {
+class FrutaVerano extends Fruta {
   constructor(nombre, precioKg, cantidadKg, proximidad, regionRecogida) {
     super(nombre, precioKg, cantidadKg);
     this.proximidad = proximidad;
@@ -54,19 +54,19 @@ class FrutaInvierno extends Fruta {
   }
 }
 
-class FrutaVerano extends Fruta {
-  constructor(nombre, precioKg, cantidadKg, conservacionFueraNevera) {
+class FrutaInvierno extends Fruta {
+  constructor(nombre, precioKg, cantidadKg, conservarEnNevera) {
     super(nombre, precioKg, cantidadKg);
-    this.conservacionFueraNevera = conservacionFueraNevera;
+    this.conservarEnNevera = conservarEnNevera;
   }
 
-  getConservacionFueraNevera() {
-    return this.conservacionFueraNevera;
+  getConservarEnNevera() {
+    return this.conservarEnNevera;
   }
 
-  setConservacionFueraNevera(conservacionFueraNevera) {
-    this.conservacionFueraNevera = conservacionFueraNevera;
+  setConservarEnNevera(conservarEnNevera) {
+    this.conservarEnNevera = conservarEnNevera;
   }
 }
 
-export { Fruta, FrutaInvierno, FrutaVerano };
+export { Fruta, FrutaVerano, FrutaInvierno };
