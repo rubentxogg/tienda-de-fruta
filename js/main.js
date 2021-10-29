@@ -66,7 +66,7 @@ function anadirCantidadKilosAFrutas() {
   const FRUTAS = {
     limon: () =>
       frutas[0].setCantidadKg(frutas[0].getCantidadKg() + cantidadKg),
-    manzanaVde: () =>
+    manzanaVerde: () =>
       frutas[1].setCantidadKg(frutas[1].getCantidadKg() + cantidadKg),
     manzanaRoja: () =>
       frutas[2].setCantidadKg(frutas[2].getCantidadKg() + cantidadKg),
@@ -104,18 +104,18 @@ function anadirCantidadKilosAFrutas() {
       cantidadKg = document.getElementById(imagenesFrutas[i].alt).value;
       cantidadKg = Number.parseInt(cantidadKg);
       FRUTAS[imagenesFrutas[i].alt]();
-      iniciarBotonCompra();
+      // iniciarBotonCompra();
     };
   }
 
-  function iniciarBotonCompra() {
-    if (frutaYPrecio.length === 1) {
-      BOTON_FIN_COMPRA.textContent = "¡Finalizar compra!";
-      BOTON_FIN_COMPRA.removeAttribute("disabled");
-      BOTON_FIN_COMPRA.removeAttribute("class", "botonDesactivado");
-      RESUMEN_COMPRA.value = "";
-    }
-  }
+  // function iniciarBotonCompra() {
+  //   if (frutaYPrecio.length === 1) {
+  //     BOTON_FIN_COMPRA.textContent = "¡Finalizar compra!";
+  //     BOTON_FIN_COMPRA.removeAttribute("disabled");
+  //     BOTON_FIN_COMPRA.removeAttribute("class", "botonDesactivado");
+  //     RESUMEN_COMPRA.value = "";
+  //   }
+  // }
 }
 
 function efectoFrutaClick(imagenFruta) {
@@ -186,8 +186,7 @@ function obtenerPrecioMedioKilo() {
 }
 
 function finalizarCompra() {
-  alert(frutas[0].getCantidadKg());
-  ("use strict");
+  "use strict";
   let precioTotal = 0;
   let precioMedio = 0;
   let fruta = null;
