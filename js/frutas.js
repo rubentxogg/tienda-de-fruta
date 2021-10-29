@@ -69,4 +69,4 @@ class FrutaInvierno extends Fruta {
   }
 }
 
-export { Fruta, FrutaVerano, FrutaInvierno };
+export { FrutaVerano, FrutaInvierno };

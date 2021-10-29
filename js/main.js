@@ -1,9 +1,13 @@
-import { Fruta } from "./frutas.js";
 import { FrutaVerano } from "./frutas.js";
 import { FrutaInvierno } from "./frutas.js";
-////////////////////////////////////////////////////////////////////////
 
-function inicializarFrutas(){
+var frutaYPrecio = [];
+var frutas = [];
+const BOTON_FIN_COMPRA = document.getElementById("finCompra");
+const RESUMEN_COMPRA = document.getElementById("cajaResumen");
+RESUMEN_COMPRA.value = "";
+
+function inicializarFrutas() {
   "use strict";
   // Invierno
   let limon = new FrutaInvierno("Limón", 2.29, 0, true);
@@ -13,26 +17,36 @@ function inicializarFrutas(){
   let aguacate = new FrutaInvierno("Aguacate", 3.99, 0, true);
   let naranja = new FrutaInvierno("Naranja", 1.99, 0, true);
   let kiwi = new FrutaInvierno("Kiwi", 3.35, 0, false);
-  let banana = new FrutaInvierno("Banana", 1.05, 0 , false);
+  let banana = new FrutaInvierno("Banana", 1.05, 0, false);
   let papaya = new FrutaInvierno("Papaya", 4.89, 0, false);
 
   // Verano
   let sandia = new FrutaVerano("Sandía", 1.35, 0, true, "Andalucía");
   let cereza = new FrutaVerano("Cereza", 4.75, 0, true, "Cataluña");
   let uvas = new FrutaVerano("Uva", 0.84, 0, true, "Valencia");
-  let coco = new FrutaVerano("Coco", 3.77, 0, false, "Indonesia");
+  let coco = new FrutaVerano("Coco", 3.77, 0, false, "Yakarta");
+  let fresa = new FrutaVerano("Fresa", 1.99, 0, true, "Andalucía");
 
-  // Otras
-  let fresa = new Fruta("Fresa", 1.99, 0);
+  frutas.push(
+    limon,
+    manzanaVde,
+    manzanaRoja,
+    pina,
+    aguacate,
+    naranja,
+    kiwi,
+    banana,
+    papaya,
+    sandia,
+    cereza,
+    uvas,
+    coco,
+    fresa
+  );
 }
 
-////////////////////////////////////////////////////////////////////////
-var frutaYPrecio = [];
-const BOTON_FIN_COMPRA = document.getElementById("finCompra");
-const RESUMEN_COMPRA = document.getElementById("cajaResumen");
-RESUMEN_COMPRA.value = "";
-
-anadirFrutaYPrecio();
+inicializarFrutas();
+anadirCantidadKilosAFrutas();
 
 BOTON_FIN_COMPRA.onclick = () => {
   try {
@@ -44,68 +58,52 @@ BOTON_FIN_COMPRA.onclick = () => {
   }
 };
 
-function anadirFrutaYPrecio() {
+function anadirCantidadKilosAFrutas() {
   "use strict";
+  let imagenesFrutas = document.getElementsByClassName("frutaImg");
+  let cantidadKg = 0;
 
-  let fruta = document.getElementsByClassName("frutaImg");
+  const FRUTAS = {
+    limon: () =>
+      frutas[0].setCantidadKg(frutas[0].getCantidadKg() + cantidadKg),
+    manzanaVde: () =>
+      frutas[1].setCantidadKg(frutas[1].getCantidadKg() + cantidadKg),
+    manzanaRoja: () =>
+      frutas[2].setCantidadKg(frutas[2].getCantidadKg() + cantidadKg),
+    pina: () => 
+      frutas[3].setCantidadKg(frutas[3].getCantidadKg() + cantidadKg),
+    aguacate: () =>
+      frutas[4].setCantidadKg(frutas[4].getCantidadKg() + cantidadKg),
+    naranja: () =>
+      frutas[5].setCantidadKg(frutas[5].getCantidadKg() + cantidadKg),
+    kiwi: () => 
+      frutas[6].setCantidadKg(frutas[6].getCantidadKg() + cantidadKg),
+    banana: () =>
+      frutas[7].setCantidadKg(frutas[7].getCantidadKg() + cantidadKg),
+    papaya: () =>
+      frutas[8].setCantidadKg(frutas[8].getCantidadKg() + cantidadKg),
+    sandia: () =>
+      frutas[9].setCantidadKg(frutas[9].getCantidadKg() + cantidadKg),
+    cereza: () =>
+      frutas[10].setCantidadKg(frutas[10].getCantidadKg() + cantidadKg),
+    uvas: () => 
+      frutas[11].setCantidadKg(frutas[11].getCantidadKg() + cantidadKg),
+    coco: () => 
+      frutas[12].setCantidadKg(frutas[12].getCantidadKg() + cantidadKg),
+    fresa: () =>
+      frutas[13].setCantidadKg(frutas[13].getCantidadKg() + cantidadKg),
+  };
 
-  // Asigna el evento "onclick" en todos los elementos de la colección de fruta
-  for (let i = 0; i < fruta.length; i++) {
-    anadir(i);
+  for (let i = 0; i < imagenesFrutas.length; i++) {
+    anadirCantidad(i);
   }
 
-  function anadir(i) {
-    fruta[i].onclick = function () {
+  function anadirCantidad(i) {
+    imagenesFrutas[i].onclick = function () {
       efectoFrutaClick(this);
-
-      switch (fruta[i].alt) {
-        case "limon":
-          frutaYPrecio.push("Limón-2.29");
-          break;
-        case "manzanaVerde":
-          frutaYPrecio.push("Manzana verde-1.39");
-          break;
-        case "manzanaRoja":
-          frutaYPrecio.push("Manzana roja-1.69");
-          break;
-        case "piña":
-          frutaYPrecio.push("Piña-1.98");
-          break;
-        case "sandia":
-          frutaYPrecio.push("Sandía-1.35");
-          break;
-        case "cereza":
-          frutaYPrecio.push("Cereza-4.75");
-          break;
-        case "banana":
-          frutaYPrecio.push("Banana-1.05");
-          break;
-        case "uvas":
-          frutaYPrecio.push("Uvas-0.84");
-          break;
-        case "coco":
-          frutaYPrecio.push("Coco-3.77");
-          break;
-        case "fresa":
-          frutaYPrecio.push("Fresa-1.99");
-          break;
-        case "aguacate":
-          frutaYPrecio.push("Aguacate-3.99");
-          break;
-        case "naranja":
-          frutaYPrecio.push("Naranja-1.99");
-          break;
-        case "kiwi":
-          frutaYPrecio.push("Kiwi-3.35");
-          break;
-        case "papaya":
-          frutaYPrecio.push("Papaya-4.89");
-          break;
-        default:
-          console.error("No se ha podido añadir a la cesta.");
-          break;
-      }
-
+      cantidadKg = document.getElementById(imagenesFrutas[i].alt).value;
+      cantidadKg = Number.parseInt(cantidadKg);
+      FRUTAS[imagenesFrutas[i].alt]();
       iniciarBotonCompra();
     };
   }
@@ -132,7 +130,6 @@ function efectoFrutaClick(imagenFruta) {
 
 function obtenerPrecios() {
   "use strict";
-
   let precios = [];
 
   frutaYPrecio.forEach((element) => {
@@ -144,7 +141,6 @@ function obtenerPrecios() {
 
 function sumaTotalPrecios(arrayPrecios) {
   "use strict";
-
   let suma = arrayPrecios.reduce((precio1, precio2) => {
     return Number.parseFloat(precio1) + Number.parseFloat(precio2);
   });
@@ -154,7 +150,6 @@ function sumaTotalPrecios(arrayPrecios) {
 
 function obtenerNumeroKilosFruta() {
   "use strict";
-
   let frutas = [];
   const contadorKilos = (array) =>
     array.reduce((prev, curr) => ((prev[curr] = ++prev[curr] || 1), prev), {});
@@ -191,8 +186,8 @@ function obtenerPrecioMedioKilo() {
 }
 
 function finalizarCompra() {
-  "use strict";
-
+  alert(frutas[0].getCantidadKg());
+  ("use strict");
   let precioTotal = 0;
   let precioMedio = 0;
   let fruta = null;
