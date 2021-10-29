@@ -5,7 +5,11 @@ var frutaYPrecio = [];
 var frutas = [];
 const BOTON_FIN_COMPRA = document.getElementById("finCompra");
 const RESUMEN_COMPRA = document.getElementById("cajaResumen");
-RESUMEN_COMPRA.value = "";
+
+function limpiarValue(value){
+  "use strict";
+  value = "";
+}
 
 function inicializarFrutas() {
   "use strict";
@@ -45,6 +49,7 @@ function inicializarFrutas() {
   );
 }
 
+limpiarValue(RESUMEN_COMPRA.value);
 inicializarFrutas();
 anadirCantidadKilosAFrutas();
 
@@ -128,15 +133,11 @@ function efectoFrutaClick(imagenFruta) {
   }, 300);
 }
 
-function obtenerPrecios() {
+function obtenerPrecioTotalFruta(fruta) {
   "use strict";
-  let precios = [];
-
-  frutaYPrecio.forEach((element) => {
-    precios.push(element.split("-")[1]);
-  });
-
-  return precios;
+  let precioTotal = fruta.getPrecioKg() * fruta.getCantidadKg();
+  
+  return precioTotal;
 }
 
 function sumaTotalPrecios(arrayPrecios) {
