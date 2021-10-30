@@ -1,14 +1,29 @@
 import { FrutaVerano } from "./frutas.js";
 import { FrutaInvierno } from "./frutas.js";
+import { exceptionCestaCompraVacia } from "./excepciones.js";
 
-var frutaYPrecio = [];
-var frutas = [];
 const BOTON_FIN_COMPRA = document.getElementById("finCompra");
 const RESUMEN_COMPRA = document.getElementById("cajaResumen");
+var frutas = [];
 
-function limpiarValue(value){
+limpiarValue(RESUMEN_COMPRA);
+inicializarFrutas();
+anadirCantidadKilosAFrutas();
+
+BOTON_FIN_COMPRA.onclick = () => {
+  try {
+    finalizarCompra(frutas);
+  } catch (exceptionCestaCompraVacia) {
+    alert("¡No puedes finalizar la compra con la cesta vacía!");
+  } finally {
+    frutas = [];
+    inicializarFrutas();
+  }
+};
+
+function limpiarValue(input){
   "use strict";
-  value = "";
+  input.value = "";
 }
 
 function inicializarFrutas() {
@@ -48,20 +63,6 @@ function inicializarFrutas() {
     fresa
   );
 }
-
-limpiarValue(RESUMEN_COMPRA.value);
-inicializarFrutas();
-anadirCantidadKilosAFrutas();
-
-BOTON_FIN_COMPRA.onclick = () => {
-  try {
-    finalizarCompra();
-  } catch (exceptionCestaCompraVacia) {
-    alert("¡No puedes finalizar la compra con la cesta vacía!");
-  } finally {
-    frutaYPrecio = [];
-  }
-};
 
 function anadirCantidadKilosAFrutas() {
   "use strict";
@@ -108,29 +109,59 @@ function anadirCantidadKilosAFrutas() {
       efectoFrutaClick(this);
       cantidadKg = document.getElementById(imagenesFrutas[i].alt).value;
       cantidadKg = Number.parseInt(cantidadKg);
-      FRUTAS[imagenesFrutas[i].alt]();
-      // iniciarBotonCompra();
+
+      if(cantidadKg > 0){
+        FRUTAS[imagenesFrutas[i].alt]();
+      } else {
+        efectoFrutaClickError(this);
+        alert("Debes introducir una cantidad mayor a 0");
+      }
+      iniciarBotonCompra();
     };
   }
 
-  // function iniciarBotonCompra() {
-  //   if (frutaYPrecio.length === 1) {
-  //     BOTON_FIN_COMPRA.textContent = "¡Finalizar compra!";
-  //     BOTON_FIN_COMPRA.removeAttribute("disabled");
-  //     BOTON_FIN_COMPRA.removeAttribute("class", "botonDesactivado");
-  //     RESUMEN_COMPRA.value = "";
-  //   }
-  // }
+  function iniciarBotonCompra() {
+    if (!comprobarCestaVacia(frutas)) {
+      BOTON_FIN_COMPRA.textContent = "¡Finalizar compra!";
+      BOTON_FIN_COMPRA.removeAttribute("disabled");
+      BOTON_FIN_COMPRA.removeAttribute("class", "botonDesactivado");
+      limpiarValue(RESUMEN_COMPRA);
+    }
+  }
 }
 
 function efectoFrutaClick(imagenFruta) {
   "use strict";
-
   imagenFruta.classList.add("frutaClick");
 
   setTimeout(() => {
     imagenFruta.classList.remove("frutaClick");
   }, 300);
+}
+
+function efectoFrutaClickError(imagenFruta) {
+  "use strict";
+  imagenFruta.classList.add("frutaClickError");
+
+  setTimeout(() => {
+    imagenFruta.classList.remove("frutaClickError");
+  }, 300);
+}
+
+function comprobarCestaVacia(frutas){
+  "use strict";
+  if(cantidadTotalFrutas(frutas) === 0) return true;
+  return false;
+}
+
+function cantidadTotalFrutas(frutas){
+  "use strict";
+  let cantidadFrutas = 0;
+
+  cantidadFrutas = frutas.map(elem => elem.getCantidadKg());
+  cantidadFrutas = cantidadFrutas.reduce((acum, elem) => acum+elem);
+
+  return cantidadFrutas;
 }
 
 function obtenerPrecioTotalFruta(fruta) {
@@ -153,79 +184,56 @@ function sumaTotalPrecios(frutas) {
   return Number.parseFloat(suma);
 }
 
-function obtenerNumeroKilosFruta() {
+function ordenarFrutaOrdenAlfabeticoInverso(frutas){
   "use strict";
-  let frutas = [];
-  const contadorKilos = (array) =>
-    array.reduce((prev, curr) => ((prev[curr] = ++prev[curr] || 1), prev), {});
-
-  frutaYPrecio.forEach((element) => {
-    frutas.push(element.split("-")[0]);
+  let frutasOrdenadas = [];
+  
+  frutasOrdenadas = frutas.sort((elem1 , elem2) => {
+    if(elem1.getNombre() < elem2.getNombre()) return 1;
+    if(elem1.getNombre() > elem2.getNombre()) return -1;
+    return 0;
   });
 
-  ordenarFrutasOrdenAlfabeticoInverso();
-
-  return contadorKilos(frutas);
-
-  function ordenarFrutasOrdenAlfabeticoInverso() {
-    frutas.sort(function (elem1, elem2) {
-      if (elem1 < elem2) {
-        return -1;
-      } else if (elem1 > elem2) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
-
-    frutas.reverse();
-  }
+  return frutasOrdenadas;
 }
 
-function obtenerPrecioMedioKilo() {
+function obtenerPrecioMedioKilo(frutas) {
   "use strict";
+  let precioMedioKilo = 0;
 
-  return (sumaTotalPrecios(obtenerPrecios()) / obtenerPrecios().length).toFixed(
-    2
-  );
+  precioMedioKilo = sumaTotalPrecios(frutas) / cantidadTotalFrutas(frutas);
+
+  return precioMedioKilo;
 }
 
-function finalizarCompra() {
+function finalizarCompra(frutas) {
   "use strict";
   let precioTotal = 0;
   let precioMedio = 0;
-  let fruta = null;
 
-  if (frutaYPrecio.length === 0) {
-    throw new exceptionCestaCompraVacia("El array frutaYPrecio está vacío.");
-  }
+  if(comprobarCestaVacia(frutas)){
+    throw new exceptionCestaCompraVacia("Todas las cantidades de las frutas son 0");
+  } 
 
   BOTON_FIN_COMPRA.textContent = "¡Gracias por la compra!";
   BOTON_FIN_COMPRA.disabled = "true";
   BOTON_FIN_COMPRA.setAttribute("class", "botonDesactivado");
 
-  precioTotal = sumaTotalPrecios(obtenerPrecios());
-  precioMedio = obtenerPrecioMedioKilo();
-  fruta = obtenerNumeroKilosFruta();
+  precioTotal = sumaTotalPrecios(frutas);
+  precioMedio = obtenerPrecioMedioKilo(frutas);
+  frutas = ordenarFrutaOrdenAlfabeticoInverso(frutas);
 
   RESUMEN_COMPRA.value += "----------------------";
 
-  for (let elem in fruta) {
-    if (fruta[elem] <= 1) {
-      RESUMEN_COMPRA.value += "\n" + elem + " --- " + fruta[elem] + " Kg";
-    } else {
-      RESUMEN_COMPRA.value += "\n" + elem + " --- " + fruta[elem] + " Kgs";
+  frutas.forEach(elem => {
+    if (elem.getCantidadKg() === 1){
+      RESUMEN_COMPRA.value += "\n" + elem.getNombre() + " --- " + elem.getCantidadKg() + " Kg";
+    } else if(elem.getCantidadKg() > 1) {
+      RESUMEN_COMPRA.value += "\n" + elem.getNombre() + " --- " + elem.getCantidadKg() + " Kgs";
     }
-  }
+  });
 
   RESUMEN_COMPRA.value += "\n----------------------";
-  RESUMEN_COMPRA.value += "\nPrecio total --- " + precioTotal + "€";
-  RESUMEN_COMPRA.value += "\nPrecio medio --- " + precioMedio + "€/Kg";
+  RESUMEN_COMPRA.value += "\nPrecio total --- " + Math.floor(precioTotal * 100)/100 + "€";
+  RESUMEN_COMPRA.value += "\nPrecio medio --- " + precioMedio.toFixed(3) + "€/Kg";
 }
-
-function exceptionCestaCompraVacia(mensaje) {
-  this.mensaje = "Error: " + mensaje;
-}
-
-exceptionCestaCompraVacia.prototype = Object.create(Error.prototype);
-exceptionCestaCompraVacia.prototype.name = "exceptionCestaCompraVacia";

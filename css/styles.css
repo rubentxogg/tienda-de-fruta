@@ -65,6 +65,11 @@ section{
     border-color: #80bbe0;
 }
 
+.frutaClickError{
+    box-shadow: 3px 3px 15px #C70039 , 3px 3px 30px #C70039 ;
+    border-color: #C70039;
+}
+
 .contenedor-frutas{
     display: flex;
     flex-wrap: wrap;
