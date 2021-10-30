@@ -1,4 +1,4 @@
-export function exceptionCestaCompraVacia(mensaje) {
+function exceptionCestaCompraVacia(mensaje) {
     this.mensaje = "Error: " + mensaje;
   }
   

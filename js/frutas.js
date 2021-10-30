@@ -68,5 +68,3 @@ class FrutaInvierno extends Fruta {
     this.conservarEnNevera = conservarEnNevera;
   }
 }
-
-export { FrutaVerano, FrutaInvierno };

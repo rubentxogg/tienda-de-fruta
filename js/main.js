@@ -1,7 +1,3 @@
-import { FrutaVerano } from "./frutas.js";
-import { FrutaInvierno } from "./frutas.js";
-import { exceptionCestaCompraVacia } from "./excepciones.js";
-
 const BOTON_FIN_COMPRA = document.getElementById("finCompra");
 const RESUMEN_COMPRA = document.getElementById("cajaResumen");
 var frutas = [];
