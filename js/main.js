@@ -15,7 +15,7 @@ function inicializarFrutas() {
   "use strict";
   // Invierno
   let limon = new FrutaInvierno("Limón", 2.29, 0, true);
-  let manzanaVde = new FrutaInvierno("Manzana vde", 1.39, false);
+  let manzanaVde = new FrutaInvierno("Manzana vde", 1.39, 0, false);
   let manzanaRoja = new FrutaInvierno("Manzana roja", 1.69, 0, false);
   let pina = new FrutaInvierno("Piña", 1.98, 0, false);
   let aguacate = new FrutaInvierno("Aguacate", 3.99, 0, true);
@@ -135,18 +135,22 @@ function efectoFrutaClick(imagenFruta) {
 
 function obtenerPrecioTotalFruta(fruta) {
   "use strict";
-  let precioTotal = fruta.getPrecioKg() * fruta.getCantidadKg();
+  let precioTotalFruta = fruta.getPrecioKg() * fruta.getCantidadKg();
   
-  return precioTotal;
+  return precioTotalFruta;
 }
 
-function sumaTotalPrecios(arrayPrecios) {
+function sumaTotalPrecios(frutas) {
   "use strict";
-  let suma = arrayPrecios.reduce((precio1, precio2) => {
+  let suma = 0;
+  let precios = [];
+
+  precios = frutas.map(elem => obtenerPrecioTotalFruta(elem));
+  suma = precios.reduce((precio1, precio2) => {
     return Number.parseFloat(precio1) + Number.parseFloat(precio2);
   });
 
-  return Number.parseFloat(suma).toFixed(2);
+  return Number.parseFloat(suma);
 }
 
 function obtenerNumeroKilosFruta() {
