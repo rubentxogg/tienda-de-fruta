@@ -1,5 +1,6 @@
 const BOTON_FIN_COMPRA = document.getElementById("finCompra");
 const RESUMEN_COMPRA = document.getElementById("cajaResumen");
+const ASIDE_DCHA = document.getElementById("asideDcha");
 var frutas = [];
 
 limpiarValue(RESUMEN_COMPRA);
@@ -13,6 +14,8 @@ BOTON_FIN_COMPRA.onclick = () => {
     alert("¡No puedes finalizar la compra con la cesta vacía!");
   } finally {
     frutas = [];
+    limpiarCarritoCompra();
+    limpiarInputCantidades();
     inicializarFrutas();
   }
 };
@@ -151,11 +154,28 @@ function anadirCantidadKilosAFrutas() {
   }
 
   function mostrarEnCarrito(nombre, cantidadKg){
-    const ASIDE_DCHA = document.getElementById("asideDcha");
     let parrafo = document.createElement("p");
 
     parrafo.textContent = `${nombre}: ${cantidadKg}`;
     ASIDE_DCHA.append(parrafo);
+  }
+}
+
+function limpiarCarritoCompra(){
+  "use strict";
+  let tituloCarrito = document.createElement("h2");
+
+  ASIDE_DCHA.innerHTML = "";
+  ASIDE_DCHA.append(tituloCarrito);
+  tituloCarrito.innerText = "Carrito de la compra";
+}
+
+function limpiarInputCantidades(){
+  "use strict";
+  let inputsCantidades = document.getElementsByTagName("input");
+  
+  for(let i=0; i<inputsCantidades.length; i++){
+    limpiarValue(inputsCantidades[i]);
   }
 }
 
