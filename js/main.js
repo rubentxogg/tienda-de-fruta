@@ -304,4 +304,31 @@ function finalizarCompra(frutas) {
   RESUMEN_COMPRA.value += "\n----------------------";
   RESUMEN_COMPRA.value += "\nPrecio total --- " + Math.floor(precioTotal * 100)/100 + "€";
   RESUMEN_COMPRA.value += "\nPrecio medio --- " + precioMedio.toFixed(3) + "€/Kg";
+
+  mostrarInformacionAdicional(frutas);
+
+  function mostrarInformacionAdicional(frutas){
+    let info = "{Información adicional}\n";
+
+    for(let i=0; i<frutas.length; i++){
+      if(frutas[i].getCantidadKg() > 0 && frutas[i] instanceof FrutaInvierno){
+        (frutas[i].getConservarEnNevera()) ? 
+        frutas[i].setConservarEnNevera("si") : frutas[i].setConservarEnNevera("no");
+
+        info += `\n${frutas[i].getNombre()} - 
+        Estación: Invierno 
+        Conservar en nevera: ${frutas[i].getConservarEnNevera()}\n`;
+
+      } else if(frutas[i].getCantidadKg() > 0 && frutas[i] instanceof FrutaVerano){
+        (frutas[i].getProximidad()) ? 
+        frutas[i].setProximidad("si") : frutas[i].setProximidad("no");
+
+        info += `\n${frutas[i].getNombre()} - 
+        Estación: Verano
+        Proximidad: ${frutas[i].getProximidad()}
+        Región de recogida: ${frutas[i].getRegionRecogida()}\n`;
+      }
+    }
+    alert(info);
+  }
 }
