@@ -268,17 +268,25 @@ function finalizarCompra(frutas) {
   BOTON_FIN_COMPRA.disabled = "true";
   BOTON_FIN_COMPRA.setAttribute("class", "botonDesactivado");
 
+  RESUMEN_COMPRA.value += new Date().toLocaleString([], {
+    day: "2-digit", 
+    month: "numeric", 
+    year: "numeric", 
+    hour: "2-digit", 
+    minute: "2-digit"}
+    )+"\n----------------------";
+
   precioTotal = sumaTotalPrecios(frutas);
   precioMedio = obtenerPrecioMedioKilo(frutas);
   frutas = ordenarFrutaOrdenAlfabeticoInverso(frutas);
 
-  RESUMEN_COMPRA.value += "----------------------";
-
   frutas.forEach(elem => {
     if (elem.getCantidadKg() === 1){
-      RESUMEN_COMPRA.value += "\n" + elem.getNombre() + " --- " + elem.getCantidadKg() + " Kg";
+      RESUMEN_COMPRA.value += "\n" + elem.getNombre() + " --- " + elem.getCantidadKg() + "Kg" +
+       " --- " + elem.getPrecioKg() + "€ --- " + obtenerPrecioTotalFruta(elem).toFixed(2) + "€";
     } else if(elem.getCantidadKg() > 1) {
-      RESUMEN_COMPRA.value += "\n" + elem.getNombre() + " --- " + elem.getCantidadKg() + " Kgs";
+      RESUMEN_COMPRA.value += "\n" + elem.getNombre() + " --- " + elem.getCantidadKg() + "Kgs" +
+       " --- " + elem.getPrecioKg() + "€ --- " + obtenerPrecioTotalFruta(elem).toFixed(2) + "€";
     }
   });
 
