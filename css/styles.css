@@ -1,195 +1,222 @@
 @font-face {
-    font-family: AmaticSC-Bold;
-    src: url(../fonts/AmaticSC-Bold.ttf);
+  font-family: AmaticSC-Bold;
+  src: url(../fonts/AmaticSC-Bold.ttf);
 }
 
 @font-face {
-    font-family: AmaticSC-Regular;
-    src: url(../fonts/AmaticSC-Regular.ttf);
+  font-family: AmaticSC-Regular;
+  src: url(../fonts/AmaticSC-Regular.ttf);
 }
 
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
 /* HEADER */
-header{
-    text-align: center;
-    border-radius: 15px;
-    text-shadow: 4px 3px 0px #7A7A7A;
-    color: #FFFFFF;
-    margin: auto;
-    font-family: AmaticSC-Bold, Arial, Helvetica, sans-serif;
-    font-size: 40px;
-    background: linear-gradient(90deg, rgba(174,221,238,1) 4%, rgba(180,212,217,1) 51%, rgba(194,221,252,1) 100%);
-    cursor: default;
-    width: 65%;
-    margin-left: 5%;
+header {
+  text-align: center;
+  border-radius: 15px;
+  text-shadow: 4px 3px 0px #7a7a7a;
+  color: #ffffff;
+  margin: auto;
+  font-family: AmaticSC-Bold, Arial, Helvetica, sans-serif;
+  font-size: 40px;
+  background: linear-gradient(
+    90deg,
+    rgba(174, 221, 238, 1) 4%,
+    rgba(180, 212, 217, 1) 51%,
+    rgba(194, 221, 252, 1) 100%
+  );
+  cursor: default;
+  width: 65%;
+  margin-left: 5%;
 }
 
-header h3{
-    margin-top: -65px;
-    font-size: 35px;
+header h3 {
+  margin-top: -65px;
+  font-size: 35px;
 }
 
 /* BODY */
-body{
-    background-image: url(../img/fondo.png);
+body {
+  background-image: url(../img/fondo.png);
 }
 
 /* SECTION */
-section{
-    font-size: 25px;
-    text-shadow: 1px 1px 0px #7A7A7A;
-    font-family: AmaticSC-Regular, Arial, Helvetica, sans-serif;
-    width: 75%;
-    float: left;
+section {
+  font-size: 25px;
+  text-shadow: 1px 1px 0px #7a7a7a;
+  font-family: AmaticSC-Regular, Arial, Helvetica, sans-serif;
+  width: 75%;
+  float: left;
 }
 
-.frutaImg{
-    border-radius: 5%;
-    transition: all .2s ease-in-out;
-    cursor: pointer;
-    width: 200px;
-    height: 200px;
-    border: 3px solid;
-    border-color: #000000a4;
+.frutaImg {
+  border-radius: 5%;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  width: 200px;
+  height: 200px;
+  border: 3px solid;
+  border-color: #000000a4;
 }
 
-.frutaImg:hover{
-    transform: scale(1.1, 1.1);
+.frutaImg:hover {
+  transform: scale(1.1, 1.1);
 }
 
-.frutaClick{
-    box-shadow: 3px 3px 15px #80bbe0, 3px 3px 30px #80bbe0;
-    border-color: #80bbe0;
+.frutaClick {
+  box-shadow: 3px 3px 15px #80bbe0, 3px 3px 30px #80bbe0;
+  border-color: #80bbe0;
 }
 
-.frutaClickError{
-    box-shadow: 3px 3px 15px #C70039 , 3px 3px 30px #C70039 ;
-    border-color: #C70039;
+.frutaClickError {
+  box-shadow: 3px 3px 15px #c70039, 3px 3px 30px #c70039;
+  border-color: #c70039;
 }
 
-.contenedor-frutas{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    row-gap: 45px;
-    column-gap: 30px;
-    width: 100%;
+.contenedor-frutas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 45px;
+  column-gap: 30px;
+  width: 100%;
 }
 
-.contenedor-frutas > div{
-    text-align: center;
+.contenedor-frutas > div {
+  text-align: center;
 }
 
-.contenedor-frutas > div > h2{
-    margin: 5px;
-    cursor: default;
+.contenedor-frutas > div > h2 {
+  margin: 5px;
+  cursor: default;
 }
 
-button{
-    border-radius: 15px;
-    display: block;
-    width: 35%;
-    margin: auto;
-    margin-top: 5%;
-    cursor: pointer;
-    font-family: AmaticSC-Bold, Arial, Helvetica, sans-serif;
-    font-size: 45px;
-    text-shadow: 4px 3px 0px #7A7A7A;
-    color: #FFFFFF;
-    background: linear-gradient(90deg, rgba(174,221,238,1) 4%, rgba(180,212,217,1) 51%, rgba(194,221,252,1) 100%);
-    transition: all .2s ease-in-out;
+button {
+  border-radius: 15px;
+  display: block;
+  width: 35%;
+  margin: auto;
+  margin-top: 5%;
+  cursor: pointer;
+  font-family: AmaticSC-Bold, Arial, Helvetica, sans-serif;
+  font-size: 45px;
+  text-shadow: 4px 3px 0px #7a7a7a;
+  color: #ffffff;
+  background: linear-gradient(
+    90deg,
+    rgba(174, 221, 238, 1) 4%,
+    rgba(180, 212, 217, 1) 51%,
+    rgba(194, 221, 252, 1) 100%
+  );
+  transition: all 0.2s ease-in-out;
 }
 
-button:hover{
-    box-shadow: 3px 3px 30px #246191;
+button:hover {
+  box-shadow: 3px 3px 30px #246191;
 }
 
-.botonDesactivado{
-    cursor: default;
+.botonDesactivado {
+  cursor: default;
 }
 
-.botonDesactivado:hover{
-    box-shadow: none;
+.botonDesactivado:hover {
+  box-shadow: none;
 }
 
-fieldset{
-    width: 70%;
-    height: auto;
-    margin: 4% auto auto;
-    display: flex;
-    height: auto;
-    border-radius: 5px;
-    margin-bottom: 10%;
-    border-color: #7a7a7a;
+fieldset {
+  width: 70%;
+  height: auto;
+  margin: 4% auto auto;
+  display: flex;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10%;
+  border-color: #7a7a7a;
 }
 
-textarea{
-    border-radius: 15px;
-    width: 100%;
-    text-align: center;
-    font-size: 45px;
-    font-family: AmaticSC-Regular, Arial, Helvetica, sans-serif;
-    background-image: url(../img/fondoTextarea.jpg);
-    background-size: cover;
-    background-position: 4%;
-    border-color: #7a7a7a3d;
+textarea {
+  border-radius: 15px;
+  width: 100%;
+  text-align: center;
+  font-size: 45px;
+  font-family: AmaticSC-Regular, Arial, Helvetica, sans-serif;
+  background-image: url(../img/fondoTextarea.jpg);
+  background-size: cover;
+  background-position: 4%;
+  border-color: #7a7a7a3d;
 }
 
-textarea:disabled{
-    background-color: #FFFFFF;
-    color: black;
+textarea:disabled {
+  background-color: #ffffff;
+  color: black;
 }
 
-textarea::placeholder{
-    color: black;
+textarea::placeholder {
+  color: black;
 }
 
-legend{
-    font-size: 48px;
-    text-shadow: 3px 3px 0px #7A7A7A;
-    cursor: default;
+legend {
+  font-size: 48px;
+  text-shadow: 3px 3px 0px #7a7a7a;
+  cursor: default;
 }
 
-span{
-    color: white;
+span {
+  color: white;
 }
 
 /* ASIDE DCHA */
-#asideDcha{
-    position: fixed;
-    border: 2px solid red;
-    width: 25%;
-    height: 100%;
-    top: 0px;
-    bottom: 0px;
-    right: 0px;
+#asideDcha {
+  position: fixed;
+  border: 2px solid red;
+  width: 25%;
+  height: 100%;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  overflow: scroll;
+  overflow-x: hidden;
+  text-align: center;
 }
 
-#asideDcha h2{
-    text-align: center;
-    text-decoration: underline;
-    font-family: AmaticSC-Bold, Arial, Helvetica, sans-serif;
-    font-size: 40px;
+#asideDcha h2 {
+  text-decoration: underline;
+  font-family: AmaticSC-Bold, Arial, Helvetica, sans-serif;
+  font-size: 40px;
+}
+
+#asideDcha p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.4rem;
+}
+
+#asideDcha p::first-letter {
+  font-weight: bold;
+}
+
+#asideDcha p:last-child {
+  color: #555554;
+  text-shadow: 0px 5px 1px rgba(150, 150, 150, 0.5);
+  transform: scale(1.2, 1.2);
 }
 
 /* FOOTER */
-footer{
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.178);
+footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.178);
 }
 
-footer > p{
-    font-family: Arial, Helvetica, sans-serif;
-    cursor: default;
+footer > p {
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: default;
 }
 
-footer > p > a{
-    font-family: Arial, Helvetica, sans-serif;
+footer > p > a {
+  font-family: Arial, Helvetica, sans-serif;
 }
