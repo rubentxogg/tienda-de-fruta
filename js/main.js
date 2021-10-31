@@ -155,9 +155,20 @@ function anadirCantidadKilosAFrutas() {
 
   function mostrarEnCarrito(nombre, cantidadKg){
     let parrafo = document.createElement("p");
+    let parrafos = null;
 
     parrafo.textContent = `${nombre}: ${cantidadKg}`;
     ASIDE_DCHA.append(parrafo);
+    parrafos = document.getElementsByTagName("p");
+
+    for(let i=0; i<(parrafos.length-1) ; i++){
+      if(parrafos[i].textContent.startsWith(nombre)){
+        parrafos[i].classList.add("ocurrenciaCarritoCompra");
+      }
+      else{
+        parrafos[i].classList.remove("ocurrenciaCarritoCompra");
+      }
+    }
   }
 }
 
