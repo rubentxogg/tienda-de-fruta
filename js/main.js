@@ -1,6 +1,6 @@
 const BOTON_FIN_COMPRA = document.getElementById("finCompra");
 const RESUMEN_COMPRA = document.getElementById("cajaResumen");
-const ASIDE_DCHA = document.getElementById("asideDcha");
+const CARRITO_COMPRA = document.getElementById("carritoCompra");
 var frutas = [];
 
 // Ejecución de la aplicación
@@ -173,7 +173,7 @@ function anadirCantidadKilosAFrutas() {
       parrafo.textContent = `${nombre}: ${cantidadKg} Kg`;
     }
     
-    ASIDE_DCHA.append(parrafo);
+    CARRITO_COMPRA.append(parrafo);
     parrafos = document.getElementsByTagName("p");
 
     for(let i=0; i<(parrafos.length-1) ; i++){
@@ -189,11 +189,7 @@ function anadirCantidadKilosAFrutas() {
 
 function limpiarCarritoCompra(){
   "use strict";
-  let tituloCarrito = document.createElement("h2");
-
-  ASIDE_DCHA.innerHTML = "";
-  ASIDE_DCHA.append(tituloCarrito);
-  tituloCarrito.innerText = "Carrito de la compra";
+  CARRITO_COMPRA.innerHTML = "";
 }
 
 function limpiarInputCantidades(){
