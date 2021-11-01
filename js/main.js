@@ -3,22 +3,32 @@ const RESUMEN_COMPRA = document.getElementById("cajaResumen");
 const ASIDE_DCHA = document.getElementById("asideDcha");
 var frutas = [];
 
-limpiarValue(RESUMEN_COMPRA);
-inicializarFrutas();
-anadirCantidadKilosAFrutas();
+// Ejecución de la aplicación
+flujoApp();
 
-BOTON_FIN_COMPRA.onclick = () => {
-  try {
-    finalizarCompra(frutas);
-  } catch (exceptionCestaCompraVacia) {
-    alert("¡No puedes finalizar la compra con la cesta vacía!");
-  } finally {
-    frutas = [];
-    limpiarCarritoCompra();
-    limpiarInputCantidades();
-    inicializarFrutas();
-  }
-};
+function flujoApp(){
+  "use strict";
+  limpiarValue(RESUMEN_COMPRA);
+  limpiarInputCantidades();
+  inicializarFrutas();
+  anadirCantidadKilosAFrutas();
+  
+  BOTON_FIN_COMPRA.onclick = () => {
+    try {
+      finalizarCompra(frutas);
+    } catch (exceptionCestaCompraVacia) {
+      alert("¡No puedes finalizar la compra con la cesta vacía!");
+    } finally {
+      setTimeout(() => {
+        frutas = [];
+        limpiarCarritoCompra();
+        limpiarInputCantidades();
+        inicializarFrutas();
+        limpiarValue(RESUMEN_COMPRA);
+      }, 10000);
+    }
+  };
+}
 
 function limpiarValue(input){
   "use strict";
@@ -157,7 +167,12 @@ function anadirCantidadKilosAFrutas() {
     let parrafo = document.createElement("p");
     let parrafos = null;
 
-    parrafo.textContent = `${nombre}: ${cantidadKg}`;
+    if(cantidadKg > 1){
+      parrafo.textContent = `${nombre}: ${cantidadKg} Kgs`;
+    } else {
+      parrafo.textContent = `${nombre}: ${cantidadKg} Kg`;
+    }
+    
     ASIDE_DCHA.append(parrafo);
     parrafos = document.getElementsByTagName("p");
 
@@ -316,7 +331,7 @@ function finalizarCompra(frutas) {
         frutas[i].setConservarEnNevera("si") : frutas[i].setConservarEnNevera("no");
 
         info += `\n${frutas[i].getNombre()} - 
-        Estación: Invierno 
+        Estación: invierno 
         Conservar en nevera: ${frutas[i].getConservarEnNevera()}\n`;
 
       } else if(frutas[i].getCantidadKg() > 0 && frutas[i] instanceof FrutaVerano){
@@ -324,7 +339,7 @@ function finalizarCompra(frutas) {
         frutas[i].setProximidad("si") : frutas[i].setProximidad("no");
 
         info += `\n${frutas[i].getNombre()} - 
-        Estación: Verano
+        Estación: verano
         Proximidad: ${frutas[i].getProximidad()}
         Región de recogida: ${frutas[i].getRegionRecogida()}\n`;
       }
