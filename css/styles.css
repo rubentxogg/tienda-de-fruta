@@ -213,6 +213,7 @@ input[type="number"] {
 #asideDcha p {
   font-family: AmaticSC-Bold, Arial, Helvetica, sans-serif;
   font-size: 1.8rem;
+  transition: linear 0.1s;
 }
 
 #asideDcha p::first-letter {

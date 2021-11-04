@@ -319,27 +319,28 @@ function finalizarCompra(frutas) {
   mostrarInformacionAdicional(frutas);
 
   function mostrarInformacionAdicional(frutas){
-    let info = "{Información adicional}\n";
+    let info = "<h1>{Información adicional}</h1>\n";
+    let ventana = window.open("", "ventanaEmergente", "width=400 height=400");
 
     for(let i=0; i<frutas.length; i++){
       if(frutas[i].getCantidadKg() > 0 && frutas[i] instanceof FrutaInvierno){
         (frutas[i].getConservarEnNevera()) ? 
         frutas[i].setConservarEnNevera("si") : frutas[i].setConservarEnNevera("no");
 
-        info += `\n${frutas[i].getNombre()} - 
-        Estación: invierno 
-        Conservar en nevera: ${frutas[i].getConservarEnNevera()}\n`;
+        info += `<h3>${frutas[i].getNombre()}</h3>
+        ·Estación: invierno <br>
+        ·Conservar en nevera: ${frutas[i].getConservarEnNevera()}<hr>`;
 
       } else if(frutas[i].getCantidadKg() > 0 && frutas[i] instanceof FrutaVerano){
         (frutas[i].getProximidad()) ? 
         frutas[i].setProximidad("si") : frutas[i].setProximidad("no");
 
-        info += `\n${frutas[i].getNombre()} - 
-        Estación: verano
-        Proximidad: ${frutas[i].getProximidad()}
-        Región de recogida: ${frutas[i].getRegionRecogida()}\n`;
+        info += `<h3>${frutas[i].getNombre()}</h3>
+        ·Estación: verano <br>
+        ·Proximidad: ${frutas[i].getProximidad()} <br>
+        ·Región de recogida: ${frutas[i].getRegionRecogida()}<hr>`;
       }
     }
-    alert(info);
+    ventana.document.write(info);
   }
 }
