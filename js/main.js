@@ -313,7 +313,7 @@ function finalizarCompra(frutas) {
   });
 
   RESUMEN_COMPRA.value += "\n----------------------";
-  RESUMEN_COMPRA.value += "\nPrecio total --- " + Math.floor(precioTotal * 100)/100 + "€";
+  RESUMEN_COMPRA.value += "\nPrecio total --- " + Math.floor(precioTotal).toFixed(2) + "€";
   RESUMEN_COMPRA.value += "\nPrecio medio --- " + precioMedio.toFixed(3) + "€/Kg";
 
   mostrarInformacionAdicional(frutas);
